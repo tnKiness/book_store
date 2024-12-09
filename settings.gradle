@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        google()  // Kho Maven của Google
+        mavenCentral()  // Kho Maven Central
+        gradlePluginPortal()  // Kho Plugin Gradle
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()  // Kho lưu trữ Google
+        mavenCentral()  // Kho Maven Central
+    }
+}
+
+rootProject.name = "book_store"
+include ':app'

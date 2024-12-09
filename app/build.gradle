@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.book_store"
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        namespace 'com.example.book_store'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.20' // Sử dụng phiên bản đồng nhất cho kotlin-stdlib
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20' // Hoặc nếu bạn cần kotlin-stdlib-jdk8
+        }
+    }
+}
+
+dependencies {
+    def lifecycle_version = "2.6.0"  // Đồng bộ lifecycle lên phiên bản mới nhất
+    def fragment_version = "1.5.7"  // Cập nhật Fragment
+
+    // AndroidX libraries
+    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // Firebase libraries managed by BOM
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')  // Cập nhật BOM mới nhất
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // Google Play Services
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+
+    // Glide for image loading
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+
+    // RecyclerView and related
+    implementation "androidx.recyclerview:recyclerview:1.3.1"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+
+    // CircleIndicator for ViewPager
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    // Testing libraries
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+}
+
+apply plugin: 'com.google.gms.google-services'
